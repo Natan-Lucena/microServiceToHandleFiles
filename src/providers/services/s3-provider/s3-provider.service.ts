@@ -5,7 +5,7 @@ import 'dotenv/config';
 
 interface IUploadImage {
   file: Express.Multer.File;
-  userId: number;
+  productId: number;
 }
 
 @Injectable()
@@ -16,10 +16,10 @@ export class S3ProviderService {
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   });
 
-  async uploadFile({ file, userId }: IUploadImage) {
+  async uploadFile({ file, productId }: IUploadImage) {
     const params = {
       Bucket: this.AWS_S3_BUCKET,
-      Key: String(userId) + Date.now().toString(),
+      Key: String(productId) + Date.now().toString(),
       Body: file.buffer,
       ACL: 'public-read',
       ContentType: file.mimetype,

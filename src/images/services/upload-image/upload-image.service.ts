@@ -19,7 +19,7 @@ export class UploadImageService {
       productId: dto.productId,
       file: dto.file,
     });
-    await this.writePrisma.image.create({
+    return await this.writePrisma.image.create({
       data: {
         documentUrl: imageFile.Location,
         extension: dto.file.mimetype.split('/')[1],

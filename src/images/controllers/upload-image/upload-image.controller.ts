@@ -28,7 +28,7 @@ export class UploadImageController {
     @Param('productId', ParseIntPipe) productId: number,
   ) {
     try {
-      await this.uploadImageService.execute({ file, productId });
+      return await this.uploadImageService.execute({ file, productId });
     } catch (e) {
       throw new InternalServerErrorException(e.message);
     }
